@@ -23,6 +23,7 @@ export interface SearchProps extends InputProps {
     },
   ) => void;
   enterButton?: React.ReactNode;
+  buttonDisabled?: boolean;
   loading?: boolean;
 }
 
@@ -37,6 +38,7 @@ const Search = React.forwardRef<InputRef, SearchProps>((props, ref) => {
     addonAfter,
     loading,
     disabled,
+    buttonDisabled,
     onSearch: customOnSearch,
     onChange: customOnChange,
     onCompositionStart,
@@ -116,7 +118,7 @@ const Search = React.forwardRef<InputRef, SearchProps>((props, ref) => {
         className={btnClassName}
         type={enterButton ? 'primary' : undefined}
         size={size}
-        disabled={disabled}
+        disabled={buttonDisabled || disabled}
         key="enterButton"
         onMouseDown={onMouseDown}
         onClick={onSearch}
